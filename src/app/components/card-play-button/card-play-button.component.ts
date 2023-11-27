@@ -2,11 +2,16 @@ import { Component, Input, OnInit, effect, inject } from '@angular/core';
 import { Song } from 'src/app/interfaces/playlistData.interface';
 import { DataService } from 'src/app/services/data.service';
 import { PlayerService } from 'src/app/services/player.service';
+import { PlayIconComponent } from '../../icons/play-icon/play-icon.component';
+import { NgClass } from '@angular/common';
+import { PauseIconComponent } from '../../icons/pause-icon/pause-icon.component';
 
 @Component({
-  selector: 'app-card-play-button',
-  templateUrl: './card-play-button.component.html',
-  styles: ``
+    selector: 'app-card-play-button',
+    templateUrl: './card-play-button.component.html',
+    styles: ``,
+    standalone: true,
+    imports: [PauseIconComponent, NgClass, PlayIconComponent]
 })
 export class CardPlayButtonComponent implements OnInit {
   @Input() id: number = 0;

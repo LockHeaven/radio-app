@@ -1,11 +1,19 @@
 import { Component, ElementRef, HostListener, ViewChild, effect, inject } from '@angular/core';
 import { Song } from 'src/app/interfaces/playlistData.interface';
 import { PlayerService } from 'src/app/services/player.service';
+import { VolumeControlComponent } from '../volume-control/volume-control.component';
+import { NextIconComponent } from '../../icons/next-icon/next-icon.component';
+import { PlayIconComponent } from '../../icons/play-icon/play-icon.component';
+import { PauseIconComponent } from '../../icons/pause-icon/pause-icon.component';
+import { PreviousIconComponent } from '../../icons/previous-icon/previous-icon.component';
+import { CurrentSongComponent } from '../current-song/current-song.component';
 
 @Component({
-  selector: 'player',
-  templateUrl: './player.component.html',
-  styles: ``
+    selector: 'player',
+    templateUrl: './player.component.html',
+    styles: ``,
+    standalone: true,
+    imports: [CurrentSongComponent, PreviousIconComponent, PauseIconComponent, PlayIconComponent, NextIconComponent, VolumeControlComponent]
 })
 export class PlayerComponent {
   @ViewChild('Audio') audio!: ElementRef<HTMLAudioElement>;

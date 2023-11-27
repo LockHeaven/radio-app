@@ -1,10 +1,14 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { Playlist } from 'src/app/interfaces/playlistData.interface';
+import { RouterLink } from '@angular/router';
+import { CardPlayButtonComponent } from '../card-play-button/card-play-button.component';
 
 @Component({
-  selector: 'playlist-item-card',
-  templateUrl: './playlist-item-card.component.html',
-  styles: ``
+    selector: 'playlist-item-card',
+    templateUrl: './playlist-item-card.component.html',
+    styles: ``,
+    standalone: true,
+    imports: [CardPlayButtonComponent, RouterLink]
 })
 export class PlaylistItemCardComponent implements OnChanges {
   @Input() playlistItem!: Playlist;

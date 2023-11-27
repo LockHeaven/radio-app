@@ -2,9 +2,10 @@ import { Component, effect, inject } from '@angular/core';
 import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
-  selector: 'current-song',
-  templateUrl: './current-song.component.html',
-  styles: ``
+    selector: 'current-song',
+    templateUrl: './current-song.component.html',
+    styles: ``,
+    standalone: true
 })
 export class CurrentSongComponent {
 

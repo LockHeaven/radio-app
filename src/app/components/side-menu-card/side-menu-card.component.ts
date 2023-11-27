@@ -1,10 +1,13 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { Playlist } from '../../interfaces/playlistData.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'side-menu-card',
-  templateUrl: './side-menu-card.component.html',
-  styles: ''
+    selector: 'side-menu-card',
+    templateUrl: './side-menu-card.component.html',
+    styles: '',
+    standalone: true,
+    imports: [RouterLink]
 })
 export class SideMenuCardComponent implements OnChanges {
   @Input() playlistItem!: Playlist;

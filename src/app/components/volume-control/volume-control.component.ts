@@ -1,10 +1,14 @@
 import { Component, inject } from '@angular/core';
 import { PlayerService } from 'src/app/services/player.service';
+import { VolumeIconComponent } from '../../icons/volume-icon/volume-icon.component';
+import { VolumeSilenceIconComponent } from '../../icons/volume-silence-icon/volume-silence-icon.component';
 
 @Component({
-  selector: 'volume-control',
-  templateUrl: './volume-control.component.html',
-  styles: ``
+    selector: 'volume-control',
+    templateUrl: './volume-control.component.html',
+    styles: ``,
+    standalone: true,
+    imports: [VolumeSilenceIconComponent, VolumeIconComponent]
 })
 export class VolumeControlComponent {
 

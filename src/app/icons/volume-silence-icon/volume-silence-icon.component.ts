@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'volume-silence-icon',
-  template: `
+    selector: 'volume-silence-icon',
+    template: `
     <p>
     <svg 
       fill="currentColor" 
@@ -17,7 +17,8 @@ import { Component } from '@angular/core';
     </svg>
     </p>
   `,
-  styles: ``
+    styles: ``,
+    standalone: true
 })
 export class VolumeSilenceIconComponent {
 

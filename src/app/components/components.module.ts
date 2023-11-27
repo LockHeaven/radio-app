@@ -32,16 +32,14 @@ const components = [
 ]
 
 @NgModule({
-  declarations: [
-    components
-  ],
-  imports: [
-    CommonModule,
-    IconsModule,
-    RouterModule
-  ],
-  exports: [
-    components
-  ]
+    imports: [
+        CommonModule,
+        IconsModule,
+        RouterModule,
+        components
+    ],
+    exports: [
+        components
+    ]
 })
 export class ComponentsModule { }

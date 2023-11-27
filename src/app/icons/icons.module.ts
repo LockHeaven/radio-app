@@ -31,10 +31,10 @@ const Icons = [
 
 
 @NgModule({
-  declarations: [Icons],
-  imports: [
-    CommonModule
-  ],
-  exports: [Icons]
+    imports: [
+        CommonModule,
+        Icons
+    ],
+    exports: [Icons]
 })
 export class IconsModule { }

@@ -9,15 +9,13 @@ import { PlaylistComponent } from './playlist/playlist.component';
 
 
 @NgModule({
-  declarations: [
-    LayoutComponent,
-    MainComponent,
-    PlaylistComponent
-  ],
-  imports: [
-    CommonModule,
-    ComponentsModule,
-    PagesRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        ComponentsModule,
+        PagesRoutingModule,
+        LayoutComponent,
+        MainComponent,
+        PlaylistComponent
+    ]
 })
 export class PagesModule { }

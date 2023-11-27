@@ -1,11 +1,17 @@
 import { Component, Input, OnInit, effect, inject } from '@angular/core';
 import { Playlist, Song } from 'src/app/interfaces/playlistData.interface';
 import { PlayerService } from 'src/app/services/player.service';
+import { PlayIconComponent } from '../../icons/play-icon/play-icon.component';
+import { PauseIconComponent } from '../../icons/pause-icon/pause-icon.component';
+import { NgClass } from '@angular/common';
+import { TimeIconComponent } from '../../icons/time-icon/time-icon.component';
 
 @Component({
-  selector: 'songs-table',
-  templateUrl: './songs-table.component.html',
-  styles: ``
+    selector: 'songs-table',
+    templateUrl: './songs-table.component.html',
+    styles: ``,
+    standalone: true,
+    imports: [TimeIconComponent, NgClass, PauseIconComponent, PlayIconComponent]
 })
 export class SongsTableComponent implements OnInit {
   @Input() songs: Song[] = [];

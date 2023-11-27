@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'time-icon',
-  template: `
+    selector: 'time-icon',
+    template: `
     <svg
       role="img"
       height="16"
@@ -17,7 +17,8 @@ import { Component } from '@angular/core';
     ></path></svg>
 
   `,
-  styles: ``
+    styles: ``,
+    standalone: true
 })
 export class TimeIconComponent {
 

@@ -2,11 +2,15 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Playlist, Song, allPlaylists, songs } from 'src/app/interfaces/playlistData.interface';
 import { PlayerService } from 'src/app/services/player.service';
+import { SongsTableComponent } from '../../components/songs-table/songs-table.component';
+import { CardPlayButtonComponent } from '../../components/card-play-button/card-play-button.component';
 
 @Component({
-  selector: 'app-playlist',
-  templateUrl: './playlist.component.html',
-  styles: ``
+    selector: 'app-playlist',
+    templateUrl: './playlist.component.html',
+    styles: ``,
+    standalone: true,
+    imports: [CardPlayButtonComponent, SongsTableComponent]
 })
 export class PlaylistComponent implements OnInit {
 
