@@ -11,7 +11,6 @@ import { NextIconComponent } from '../../icons/next-icon/next-icon.component';
 import { PlayIconComponent } from '../../icons/play-icon/play-icon.component';
 import { PauseIconComponent } from '../../icons/pause-icon/pause-icon.component';
 import { PreviousIconComponent } from '../../icons/previous-icon/previous-icon.component';
-import { CurrentSongComponent } from '../current-song/current-song.component';
 import { YouTubePlayerModule, YouTubePlayer } from '@angular/youtube-player';
 
 @Component({
@@ -20,7 +19,6 @@ import { YouTubePlayerModule, YouTubePlayer } from '@angular/youtube-player';
   styles: ``,
   standalone: true,
   imports: [
-    CurrentSongComponent,
     PreviousIconComponent,
     PauseIconComponent,
     PlayIconComponent,
@@ -74,7 +72,7 @@ export class PlayerComponent implements AfterViewInit {
     });
   }
   ngAfterViewInit(): void {
-    this.youtubePlayer.stateChange.subscribe((e) => {
+    this.youtubePlayer.stateChange.subscribe((e: YT.OnStateChangeEvent) => {
       if (e.data === 1 || e.data === 5) {
         this.playerService.setHasError(false);
         this.playerService.setRadioReady(true);
