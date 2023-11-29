@@ -1,18 +1,15 @@
 import { Component, Input } from '@angular/core';
-import { TimeIconComponent } from '../../icons/time-icon/time-icon.component';
-import { SearchIconComponent } from '../../icons/search-icon/search-icon.component';
-import { LibraryIconComponent } from '../../icons/library-icon/library-icon.component';
-import { HomeIconComponent } from '../../icons/home-icon/home-icon.component';
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { LibraryIconComponent } from 'src/app/icons/library-icon/library-icon.component';
 
 @Component({
-    selector: 'side-menu-item',
-    templateUrl: './side-menu-item.component.html',
-    styles: ``,
-    standalone: true,
-    imports: [RouterLink, HomeIconComponent, LibraryIconComponent, SearchIconComponent, TimeIconComponent]
+  selector: 'side-menu-item',
+  standalone: true,
+  imports: [CommonModule, RouterLink, LibraryIconComponent],
+  templateUrl: './side-menu-item.component.html',
+  styles: ``,
 })
 export class SideMenuItemComponent {
   @Input() title = '';
-  @Input() icon = '';
 }

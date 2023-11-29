@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './layout/layout.component';
 import { MainComponent } from './main/main.component';
-import { PlaylistComponent } from './playlist/playlist.component';
+import { RadioScreenComponent } from './radio-screen/radio-screen.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
@@ -11,22 +11,22 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        component: LayoutComponent
+        component: HomeComponent,
       },
       {
-        path: 'playlist/:id',
-        component: PlaylistComponent
+        path: 'radio/:id',
+        component: RadioScreenComponent,
       },
       {
         path: '**',
-        redirectTo: 'home'
-      }
-    ]
+        redirectTo: 'home',
+      },
+    ],
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PagesRoutingModule { }
+export class PagesRoutingModule {}

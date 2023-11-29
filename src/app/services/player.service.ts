@@ -1,86 +1,83 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { Playlist, Song, allPlaylists, songs } from '../interfaces/playlistData.interface';
-
-interface CurrentMusic {
-  playlist?: Playlist,
-  songs?: Song[]
-  song?: Song,
-}
+import { Radio, dataRadio } from 'src/assets/data/radios.data';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PlayerService {
-
   private _isPlaying = signal(false);
 
-  private _currentMusic = signal<CurrentMusic>({songs: []});
+  private _currentRadio = signal<Radio>({
+    category: '',
+    id: '',
+    title: '',
+    author: '',
+    background: '',
+    cover: '',
+  });
 
-  private _volume = signal(1);
+  private _volume = signal(100);
+
+  private _isMuted = signal(false);
+
+  private _hasError = signal(false);
+
+  private _radioReady = signal(false);
 
   public get isPlaying(): boolean {
     return this._isPlaying();
   }
   public setIsPlaying(value: boolean) {
-    this._isPlaying.set(value);    
+    this._isPlaying.set(value);
   }
 
-  public get currentMusic() {
-    return this._currentMusic();
+  public get currentRadio() {
+    return this._currentRadio();
   }
-  public setCurrentMusic(value: CurrentMusic) {
-    this._currentMusic.set(value);
+  public setCurrentRadio(value: Radio) {
+    this._currentRadio.set(value);
   }
-  public nextSong(): void {
-    const nextSong = this.currentMusic;
-    const index = nextSong.songs?.indexOf(nextSong.song!);
-    if (this.hasNextSong()) {
-      nextSong.song = nextSong.songs![index! + 1];
-      const { playlist, song, songs } = nextSong;
-      this._currentMusic.set({ playlist, song, songs });
-    }
+  public nextRadio(): void {
+    const radio = dataRadio.find(
+      (radio) => radio.id === this._currentRadio().id
+    );
+    const index = dataRadio.indexOf(radio!);
+    this.setCurrentRadio(dataRadio[index + 1]);
   }
-  public previousSong(): boolean {
-    const nextSong = this.currentMusic;
-    const index = nextSong.songs?.indexOf(nextSong.song!);
-    if (this.hasPreviousSong()) {
-      nextSong.song = nextSong.songs![index! - 1];
-      const { playlist, song, songs } = nextSong;
-      this._currentMusic.set({ playlist, song, songs });
+  public previousRadio(): void {
+    const radio = dataRadio.find(
+      (radio) => radio.id === this._currentRadio().id
+    );
+    const index = dataRadio.indexOf(radio!);
+    this.setCurrentRadio(dataRadio[index - 1]);
+  }
+
+  public hasNextRadio(): boolean {
+    const radiosLength = dataRadio.length;
+    const radio = dataRadio.find(
+      (radio) => radio.id === this._currentRadio().id
+    );
+    const index = dataRadio.indexOf(radio!);
+    if (index < radiosLength - 1) {
       return true;
     }
     return false;
   }
-  hasNextSong(): boolean {
-    if (!this.currentMusic.songs || !this.currentMusic.song) {
-      return false;
-    }
-    const lengthSongs = this.currentMusic.songs.length;
-    const nextSong = this.currentMusic;
-    const index = nextSong.songs?.indexOf(nextSong.song!);
-    if (this.currentMusic.song.id < lengthSongs) {
+
+  public hasPreviousRadio(): boolean {
+    const radio = dataRadio.find(
+      (radio) => radio.id === this._currentRadio().id
+    );
+    const index = dataRadio.indexOf(radio!);
+    if (index > 0) {
       return true;
     }
     return false;
   }
-  hasPreviousSong(): boolean {
-    if (!this.currentMusic.songs || !this.currentMusic.song) {
-      return false;
-    }
-    const nextSong = this.currentMusic;
-    const index = nextSong.songs?.indexOf(nextSong.song!);
-    if (this.currentMusic.song.id > 1) {
-      return true;
-    }
-    return false;
-  }
-  findPlaylist(id: number): Playlist {
-    const playlist = allPlaylists.find(playlist => playlist.albumId === id)!;
-    return playlist;
-  }
-  findPlaylistSongs(idPlaylist: number): Song[] {
-    const playlistSongs = songs.filter(song => song.albumId === idPlaylist);
-    return playlistSongs;
+
+  public findRadio(id: string): Radio {
+    const currentRadio = dataRadio.find((radio) => radio.id === id)!;
+    return currentRadio;
   }
 
   public get volume() {
@@ -88,5 +85,26 @@ export class PlayerService {
   }
   public setVolume(value: number) {
     this._volume.set(value);
+  }
+
+  public get isMuted() {
+    return this._isMuted();
+  }
+  public setIsMuted(value: boolean) {
+    this._isMuted.set(value);
+  }
+
+  public get hasError() {
+    return this._hasError();
+  }
+  public setHasError(value: boolean) {
+    this._hasError.set(value);
+  }
+
+  public get radioReady() {
+    return this._radioReady();
+  }
+  public setRadioReady(value: boolean) {
+    this._radioReady.set(value);
   }
 }

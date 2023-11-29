@@ -4,14 +4,13 @@ import { VolumeIconComponent } from '../../icons/volume-icon/volume-icon.compone
 import { VolumeSilenceIconComponent } from '../../icons/volume-silence-icon/volume-silence-icon.component';
 
 @Component({
-    selector: 'volume-control',
-    templateUrl: './volume-control.component.html',
-    styles: ``,
-    standalone: true,
-    imports: [VolumeSilenceIconComponent, VolumeIconComponent]
+  selector: 'volume-control',
+  templateUrl: './volume-control.component.html',
+  styles: ``,
+  standalone: true,
+  imports: [VolumeSilenceIconComponent, VolumeIconComponent],
 })
 export class VolumeControlComponent {
-
   volume: number = 100;
   volumeAux: number = 100;
 
@@ -20,24 +19,24 @@ export class VolumeControlComponent {
   setMute(): void {
     if (this.isVolumeSilence) {
       this.volume = this.volumeAux;
-      const volumeValue = this.volume / 100;
-      this.playerService.setVolume(volumeValue);
+      this.playerService.setVolume(this.volume);
+      this.playerService.setIsMuted(false);
     } else {
       this.volumeAux = this.volume;
-      this.volume = 0
+      this.volume = 0;
       this.playerService.setVolume(0);
+      this.playerService.setIsMuted(true);
     }
-  }  
+  }
 
   onChangeVolume(volume: Event): void {
     const volumeValue = volume.target as HTMLInputElement;
-    const newVolume = volumeValue.valueAsNumber / 100;
+    const newVolume = volumeValue.valueAsNumber;
     this.playerService.setVolume(newVolume);
     this.volume = volumeValue.valueAsNumber;
   }
 
   get isVolumeSilence(): boolean {
-    return this.volume < 0.1;
+    return this.volume < 1;
   }
-
 }

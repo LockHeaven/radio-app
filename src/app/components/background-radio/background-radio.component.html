@@ -1,0 +1,27 @@
+<div
+  class="relative h-full w-full bg-no-repeat bg-center bg-fixed bg-cover brightness-50"
+  [style.background-image]="'url(' + background + ')'"
+>
+  @if (currentRadio && !loading && !hasError) {
+  <div class="absolute bottom-[20%] md:top-[30%] ml-4 md:ml-16">
+    <h3
+      class="text-white text-xl md:text-5xl h-full w-[50%] lg:text-6xl font-bold drop-shadow-lg"
+    >
+      {{ currentRadio.title }}
+    </h3>
+    <p
+      class="text-white text-[8px] md:text-lg mt-3 md:mt-8 w-[90%] md:w-[80%] lg:w-[50%] drop-shadow-xl"
+    >
+      {{ currentRadio.author }}
+    </p>
+  </div>
+  } @else if (hasError && !loading) {
+  <div class="absolute top-[20%] md:top-[30%] ml-4 md:ml-16">
+    <h3
+      class="text-white text-xl md:text-5xl h-full w-[50%] lg:text-6xl font-bold drop-shadow-lg"
+    >
+      The Radio doesn´t working :c Try something else.
+    </h3>
+  </div>
+  }
+</div>

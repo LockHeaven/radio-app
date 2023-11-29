@@ -1,25 +1,34 @@
-<!-- TODO: Cambiar el href para que sea direccionado al ID -->
-
-<a
-  [routerLink]="['/playlist', playlistItem.id]"
-  class="playlist-item flex relative p-2 overflow-hidden items-center gap-5 rounded-md hover:bg-zinc-800"
+<article
+  class="group relative transition-all duration-300 gap-5 rounded-md hover:bg-zinc-800 overflow-hidden"
 >
-  <picture class="h-12 w-12 flex-none">
-    <img
-      [src]="playlistItem.cover"
-      [alt]="alt"
-      class="object-cover w-full h-full rounded-md"
-    />
-  </picture>
+  <a
+    [routerLink]="['/radio', radioItem!.id]"
+    (click)="setRadio()"
+    class="playlist-item flex p-2 gap-3 items-center justify-center md:justify-start"
+  >
+    <picture class="md:h-12 md:w-12 h-14 w-14 flex-none">
+      <img
+        [src]="radioItem!.cover"
+        [alt]="alt"
+        class="object-cover w-full h-full rounded-md"
+        [ngClass]="isCurrentRadio ? 'border-2 border-green-500' : ''"
+      />
+    </picture>
 
+    <div class="flex-auto flex-col truncate hidden md:flex">
+      <h4
+        class="text-sm"
+        [ngClass]="isCurrentRadio ? 'text-green-500' : 'text-white'"
+      >
+        {{ radioItem!.title }}
+      </h4>
 
-  <div class="flex flex-auto flex-col truncate">
-    <h4 class="text-white text-sm">
-      {{ playlistItem.title }}
-    </h4>
-
-    <span class="text-xs text-gray-400">
-      {{ artistsString }}
-    </span>
-  </div>
-</a>
+      <span
+        class="text-xs"
+        [ngClass]="isCurrentRadio ? 'text-green-300' : 'text-gray-400'"
+      >
+        {{ radioItem!.author }}
+      </span>
+    </div>
+  </a>
+</article>

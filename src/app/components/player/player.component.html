@@ -1,47 +1,44 @@
-<div class="flex flex-row justify-between w-full px-1 z-50">
-    <div class="w-[200px]">
-        <current-song></current-song>
-    </div>
+<div
+  class="flex flex-row justify-center md:justify-between items-center h-full w-full px-1 z-50"
+>
+  <div class="flex flex-row items-center justify-evenly">
+    <button
+      (click)="previousRadio()"
+      class="rounded-full p-1 disabled:opacity-75"
+      [disabled]="!playerService.hasPreviousRadio() || !radioId"
+    >
+      <previous-icon class="fill-white"></previous-icon>
+    </button>
+    <button
+      class="bg-white rounded-full p-2 disabled:opacity-75 mx-5"
+      [disabled]="!radioId"
+      (click)="play()"
+    >
+      @if(playerService.isPlaying) {
+      <pause-icon [size]="'h-8 w-8'"></pause-icon>
+      } @else {
+      <play-icon [size]="'h-8 w-8'"></play-icon>
+      }
+    </button>
+    <button
+      (click)="nextRadio()"
+      class="rounded-full p-1 disabled:opacity-75"
+      [disabled]="!playerService.hasNextRadio() || !radioId"
+    >
+      <next-icon class="fill-white"></next-icon>
+    </button>
+    <youtube-player
+      class="hidden"
+      [playerVars]="playerVars"
+      [videoId]="radioId"
+      [height]="0"
+      [width]="0"
+      #YoutubePlayer
+    >
+    </youtube-player>
+  </div>
 
-    <div class="grid place-content-center gap-y-6 flex-1">
-        <div class="flex justify-center flex-col items-center">
-            <div class="flex flex-row items-center justify-evenly">
-                <button class="rounded-full p-1 disabled:opacity-75" [disabled]="!song || !playerService.hasPreviousSong()" (click)="previousSong()">
-                    <previous-icon class="fill-white"></previous-icon>
-                </button>
-                <button class="bg-white rounded-full p-2 disabled:opacity-75 mx-5" (click)="play()" [disabled]="!song">
-                    @if(playerService.isPlaying) {
-                        <pause-icon></pause-icon>
-                    } @else {
-                        <play-icon></play-icon>
-                    }
-                </button>
-                <button class="rounded-full p-1 disabled:opacity-75" [disabled]="!song || !playerService.hasNextSong()" (click)="onEndSong()">
-                    <next-icon class="fill-white"></next-icon>
-                </button>
-            </div>
-            <div class="flex items-center gap-x-3 text-xs pt-2">
-                <span class="opacity-50 w-12 text-right">{{ formatTime(currentTime) }}</span>
-                <input
-                    type="range"
-                    [value]="currentTime"
-                    [max]="duration"
-                    [min]="0"
-                    [disabled]="!song"
-                    (input)="onPlayerChange($event)"
-                    class="w-[500px]"
-                />
-                <span class="opacity-50 w-12">
-                  {{ duration ? formatTime(duration) : '0:00' }}
-                </span>
-              </div>
-            <audio #Audio (timeupdate)="onChangeAudio()" (ended)="onEndSong()"></audio>
-        </div>
-
-    </div>
-
-    <div class="w-[200px] grid place-content-center">
-        <volume-control></volume-control>
-    </div>
+  <div class="w-[200px] hidden md:grid place-content-center">
+    <volume-control></volume-control>
+  </div>
 </div>
-
