@@ -1,7 +1,7 @@
 <div
   class="relative h-full w-full bg-no-repeat bg-center bg-fixed bg-cover brightness-50"
-  [style.background-image]="'url(' + background + ')'"
 >
+  <img [ngSrc]="background" class="h-full w-full object-cover" priority />
   @if (currentRadio && !loading && !hasError) {
   <div class="absolute bottom-[20%] md:top-[30%] ml-4 md:ml-16">
     <h3

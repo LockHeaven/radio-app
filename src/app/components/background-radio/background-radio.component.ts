@@ -1,15 +1,16 @@
-import { Component, OnInit, effect, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlayerService } from 'src/app/services/player.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Radio } from 'src/assets/data/radios.data';
 import { timer } from 'rxjs';
 import { loadingImages } from 'src/assets/data/loading.data';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'background-radio',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage],
   templateUrl: './background-radio.component.html',
   styles: ``,
 })
